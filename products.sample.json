@@ -1,0 +1,32 @@
+{
+    "1": {
+        "name": "Cat T-shirt",
+        "description": "A comfy, cotton t-shirt with a cute cat graphic.",
+        "price": 15.0,
+        "rating": 4.5,
+        "reviews": [
+            "Great shirt, soft material!",
+            "Love the design, but the size is a bit small."
+        ]
+    },
+    "2": {
+        "name": "Wireless Gaming Mouse",
+        "description": "Ergonomic design with adjustable DPI.",
+        "price": 50.0,
+        "rating": 4.8,
+        "reviews": [
+            "Super responsive and comfortable to use.",
+            "Battery life is fantastic."
+        ]
+    },
+    "3": {
+        "name": "Reusable Coffee Mug",
+        "description": "Eco-friendly, insulated mug for hot and cold drinks.",
+        "price": 25.0,
+        "rating": 4.2,
+        "reviews": [
+            "Keeps my coffee hot for hours. Highly recommend.",
+            "Good quality, nice feel in my hand."
+        ]
+    }
+}

@@ -1,39 +1,9 @@
-# Sample product data
-products = {
-    "1": {
-        "name": "Cat T-shirt",
-        "description": "A comfy, cotton t-shirt with a cute cat graphic.",
-        "price": 15.00,
-        "rating": 4.5,
-        "reviews": [
-            "Great shirt, soft material!",
-            "Love the design, but the size is a bit small.",
-        ],
-    },
-    "2": {
-        "name": "Wireless Gaming Mouse",
-        "description": "Ergonomic design with adjustable DPI.",
-        "price": 50.00,
-        "rating": 4.8,
-        "reviews": [
-            "Super responsive and comfortable to use.",
-            "Battery life is fantastic.",
-        ],
-    },
-    "3": {
-        "name": "Reusable Coffee Mug",
-        "description": "Eco-friendly, insulated mug for hot and cold drinks.",
-        "price": 25.00,
-        "rating": 4.2,
-        "reviews": [
-            "Keeps my coffee hot for hours. Highly recommend.",
-            "Good quality, nice feel in my hand.",
-        ],
-    },
-}
+import json
+import os
+import shutil
 
 # List all available product from products (sample data)
-def display_products():
+def display_products(products):
     """Displays all available products with basic info."""
     print("--- Available Products ---")
     for item_id, item_data in products.items():
@@ -42,10 +12,10 @@ def display_products():
         print("-" * 20)
 
 # Function 1: View product detail
-def view_product():
+def view_product(products):
     """Allows the user to view a product's details and reviews."""
     while True:
-        display_products()
+        display_products(products)
         item_id = input("\nEnter the product number to view (or 'q' to go back): ")
         if item_id.lower() == 'q':
             return
@@ -70,6 +40,11 @@ def view_product():
 
 def main():
     """Main program loop."""
+    # Copy products.sample.json to products.json when first time using this program
+    if not os.path.exists('products.json'):
+        shutil.copy('products.sample.json', 'products.json')
+    with open('products.json', 'r') as f:
+        products = json.load(f)
     print("Welcome to the Shopee Interactive Simulator!")
     while True:
         print("\nWhat would you like to do?")
@@ -80,7 +55,7 @@ def main():
         choice = input("Enter your choice: ")
 
         if choice == "1":
-            view_product()
+            view_product(products)
         elif choice == "0":
             print("Thank you for using us. Goodbye!")
             break
