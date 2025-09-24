@@ -14,3 +14,4 @@ python main.py
 
 - option 0: Exit program.
 - option 1: View detial of available product.
+- option 2: Give review to a product.

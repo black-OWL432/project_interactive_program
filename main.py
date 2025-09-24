@@ -38,6 +38,33 @@ def view_product(products):
         else:
             print("Invalid product number. Please try again.")
 
+# Function 2: Add Review to a product
+def add_review(products):
+    """Allows a user to add a new review and updates the average rating."""
+    while True:
+        display_products(products)
+        item_id = input("\nEnter the product number you want to review (or 'q' to go back): ")
+        if item_id.lower() == 'q':
+            return
+        
+        if item_id in products:
+            item = products[item_id]
+            review_text = input(f"Write your review for '{item['name']}': ")
+            item['reviews'].append(review_text)
+            
+            new_rating = float(input("Enter your rating (1-5): "))
+            num_ratings = len(item['reviews'])
+            new_average = ((item['rating'] * (num_ratings - 1)) + new_rating) / num_ratings
+            item['rating'] = round(new_average, 1)
+
+            with open('products.json', 'w') as f:
+                json.dump(products, f, indent=4)
+
+            print("\nReview added successfully!")
+            break
+        else:
+            print("Invalid product number. Please try again.")
+
 def main():
     """Main program loop."""
     # Copy products.sample.json to products.json when first time using this program
@@ -49,6 +76,7 @@ def main():
     while True:
         print("\nWhat would you like to do?")
         print("1. View Products")
+        print("2. Add Review")
         print("0. Exit")
 
         # Wait for user input
@@ -56,6 +84,8 @@ def main():
 
         if choice == "1":
             view_product(products)
+        elif choice == "2":
+            add_review(products)
         elif choice == "0":
             print("Thank you for using us. Goodbye!")
             break
