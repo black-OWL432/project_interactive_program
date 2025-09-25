@@ -7,6 +7,8 @@
 ## Instruction
 
 ```
+git clone https://github.com/black-OWL432/project_interactive_program.git
+cd project_interactive_program
 python main.py
 ```
 
