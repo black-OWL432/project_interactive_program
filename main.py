@@ -11,6 +11,31 @@ def display_products(products):
         print(f"    Price: ${item_data['price']:.2f} | Rating: {item_data['rating']}/5.0")
         print("-" * 20)
 
+def add_product(products):
+    """Adds a new product to the products dictionary."""
+    if products:
+        item_id = str(max(int(pid) for pid in products.keys()) + 1)
+        name = input("Enter product name: ")
+        description = input("Enter product description: ")
+        price = float(input("Enter product price: "))
+    else:
+        item_id = "1"  # if dictionary is empty
+        name = input("Enter product name: ")
+        description = input("Enter product description: ")
+        price = float(input("Enter product price: "))
+
+    products[item_id] = {
+        "name": name,
+        "description": description,
+        "price": price,
+        "rating": 0.0,
+        "reviews": []
+    }
+    if not os.path.exists('products.json'):
+        shutil.copy('products.sample.json', 'products.json')
+    with open('products.json', 'w') as f:
+        json.dump(products, f, indent=4)
+    print(f"Product '{name}' added successfully!")
 # Function 1: View product detail
 def view_product(products):
     """Allows the user to view a product's details and reviews."""
@@ -77,6 +102,7 @@ def main():
         print("\nWhat would you like to do?")
         print("1. View Products")
         print("2. Add Review")
+        print("3. Add Product")
         print("0. Exit")
 
         # Wait for user input
@@ -86,6 +112,8 @@ def main():
             view_product(products)
         elif choice == "2":
             add_review(products)
+        elif choice == "3":
+            add_product(products)
         elif choice == "0":
             print("Thank you for using us. Goodbye!")
             break
