@@ -11,31 +11,6 @@ def display_products(products):
         print(f"    Price: ${item_data['price']:.2f} | Rating: {item_data['rating']}/5.0")
         print("-" * 20)
 
-def add_product(products):
-    """Adds a new product to the products dictionary."""
-    if products:
-        item_id = str(max(int(pid) for pid in products.keys()) + 1)
-        name = input("Enter product name: ")
-        description = input("Enter product description: ")
-        price = float(input("Enter product price: "))
-    else:
-        item_id = "1"  # if dictionary is empty
-        name = input("Enter product name: ")
-        description = input("Enter product description: ")
-        price = float(input("Enter product price: "))
-
-    products[item_id] = {
-        "name": name,
-        "description": description,
-        "price": price,
-        "rating": 0.0,
-        "reviews": []
-    }
-    if not os.path.exists('products.json'):
-        shutil.copy('products.sample.json', 'products.json')
-    with open('products.json', 'w') as f:
-        json.dump(products, f, indent=4)
-    print(f"Product '{name}' added successfully!")
 # Function 1: View product detail
 def view_product(products):
     """Allows the user to view a product's details and reviews."""
@@ -89,6 +64,33 @@ def add_review(products):
             break
         else:
             print("Invalid product number. Please try again.")
+
+# Function 3: Add product ot product list
+def add_product(products):
+    """Adds a new product to the products dictionary."""
+    if products:
+        item_id = str(max(int(pid) for pid in products.keys()) + 1)
+        name = input("Enter product name: ")
+        description = input("Enter product description: ")
+        price = float(input("Enter product price: "))
+    else:
+        item_id = "1"  # if dictionary is empty
+        name = input("Enter product name: ")
+        description = input("Enter product description: ")
+        price = float(input("Enter product price: "))
+
+    products[item_id] = {
+        "name": name,
+        "description": description,
+        "price": price,
+        "rating": 0.0,
+        "reviews": []
+    }
+    if not os.path.exists('products.json'):
+        shutil.copy('products.sample.json', 'products.json')
+    with open('products.json', 'w') as f:
+        json.dump(products, f, indent=4)
+    print(f"Product '{name}' added successfully!")
 
 def main():
     """Main program loop."""
