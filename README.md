@@ -6,10 +6,17 @@
 
 ## Instruction
 
+- Clone this project from GitHub
 ```
 git clone https://github.com/black-OWL432/project_interactive_program.git
+``` 
+- Enter project directory
+```
 cd project_interactive_program
-python main.py
+```
+- Run program
+```
+python3 main.py
 ```
 
 ## Usage
